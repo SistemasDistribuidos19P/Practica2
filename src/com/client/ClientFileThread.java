@@ -18,9 +18,11 @@ public class ClientFileThread extends Thread {
 		
 		try {
 			
-			System.out.println("1st server");
+			System.out.println("Accediendo al 1er Servidor");
 			
 			sc = new Socket("192.168.100.6", 5001);
+			
+			System.out.println("Servidor 1 funcionando, continúa ejecución\n");
 			
 			DataOutputStream out = new  DataOutputStream(sc.getOutputStream());
 			DataInputStream in = new DataInputStream(sc.getInputStream());
@@ -63,7 +65,7 @@ public class ClientFileThread extends Thread {
 			
 			try {
 				
-				System.out.println("2do server");
+				System.out.println("Primer servidor cayó, se accede al 2do Servidor\n");
 				
 				sc = new Socket("localhost", 5001);
 				
