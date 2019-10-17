@@ -17,9 +17,10 @@ public class ClientFileThread extends Thread {
 	public void run() {
 		
 		try {
+			
 			System.out.println("1st server");
 			
-			sc = new Socket("192.168.43.155", 5001);
+			sc = new Socket("192.168.100.6", 5001);
 			
 			DataOutputStream out = new  DataOutputStream(sc.getOutputStream());
 			DataInputStream in = new DataInputStream(sc.getInputStream());
@@ -61,6 +62,8 @@ public class ClientFileThread extends Thread {
 		catch (Exception e){
 			
 			try {
+				
+				System.out.println("2do server");
 				
 				sc = new Socket("localhost", 5001);
 				

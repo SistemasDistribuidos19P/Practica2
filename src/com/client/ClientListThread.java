@@ -14,7 +14,9 @@ public class ClientListThread extends Thread  {
 		
 		try {
 			
-			sc = new Socket("192.168.43.155", 5001);
+			System.out.println("1st server");
+			
+			sc = new Socket("192.168.100.6", 5002);
 			
 			DataOutputStream out = new  DataOutputStream(sc.getOutputStream());
 			ObjectOutputStream outObject = new ObjectOutputStream(sc.getOutputStream());
@@ -54,10 +56,10 @@ public class ClientListThread extends Thread  {
 			
 			try {
 				
-				System.out.println("2nd server");
+				System.out.println("2do server");
 				
-				sc = new Socket("localhost", 5001);
-				
+				sc = new Socket("localhost", 5002);
+								
 				DataOutputStream out = new  DataOutputStream(sc.getOutputStream());
 				ObjectOutputStream outObject = new ObjectOutputStream(sc.getOutputStream());
 				ObjectInputStream inObject = new ObjectInputStream(sc.getInputStream());
