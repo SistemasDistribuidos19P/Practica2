@@ -13,12 +13,10 @@ public class ClientListThread extends Thread  {
 	public void run() {
 		
 		try {
-			
-			System.out.println("Accediendo al 1er Servidor");
+			System.out.println("************************");
+			System.out.println("Accessing server 1...");
 			
 			sc = new Socket("192.168.100.6", 5002);
-			
-			System.out.println("Servidor 1 funcionando, continúa ejecución\n");
 			
 			DataOutputStream out = new  DataOutputStream(sc.getOutputStream());
 			ObjectOutputStream outObject = new ObjectOutputStream(sc.getOutputStream());
@@ -39,6 +37,10 @@ public class ClientListThread extends Thread  {
 			names.add("Zaide");
 			names.add("Wiliam");
 			names.add("Elisa");
+			
+			System.out.println("Server 1 SUCCESS.");
+			System.out.println("Finishing excecution...");
+			System.out.println("************************\n");
 									
 			System.out.println("Original List: ");
 			System.out.println(names);
@@ -58,7 +60,11 @@ public class ClientListThread extends Thread  {
 			
 			try {
 				
-				System.out.println("Primer servidor cayó, se accede al 2do Servidor\n");
+				System.out.println("Server 1 FAILED");
+				System.out.println("Accessing server 2...");
+				System.out.println("Server 2 SUCCESS");
+				System.out.println("Continuing excecution...");
+				System.out.println("************************\n");
 				
 				sc = new Socket("localhost", 5002);
 								
@@ -96,7 +102,7 @@ public class ClientListThread extends Thread  {
 				
 			} catch (Exception e2) {
 				
-				System.out.println("Error " + e.getMessage());
+				System.out.println("ERROR " + e.getMessage());
 				
 			}		
 		}

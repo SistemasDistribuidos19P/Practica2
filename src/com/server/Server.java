@@ -13,12 +13,13 @@ public class Server {
         
     	try {
             
-            Thread1 threadClient1 = new Thread1("1");
-            Thread2 threadClient2 = new Thread2("2");
+            Thread1 threadClient1 = new Thread1("Thread 1");
+            Thread2 threadClient2 = new Thread2("Thread 2");
             
             threadClient1.start();
+            //Integer.parseInt( "hola" ); codigo para provocar falla
             threadClient2.start();
-            
+                        
             threadClient1.join();
             threadClient2.join();
             
@@ -26,7 +27,7 @@ public class Server {
     	
         catch (Exception e) {
         	
-            System.out.println("Error: "+e.getMessage());
+            System.out.println("ERROR: "+e.getMessage());
             
         }
 	}

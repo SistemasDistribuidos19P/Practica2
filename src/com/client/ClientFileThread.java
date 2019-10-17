@@ -18,12 +18,11 @@ public class ClientFileThread extends Thread {
 		
 		try {
 			
-			System.out.println("Accediendo al 1er Servidor");
+			System.out.println("************************");
+			System.out.println("Accessing server 1...");
 			
 			sc = new Socket("192.168.100.6", 5001);
-			
-			System.out.println("Servidor 1 funcionando, continúa ejecución\n");
-			
+						
 			DataOutputStream out = new  DataOutputStream(sc.getOutputStream());
 			DataInputStream in = new DataInputStream(sc.getInputStream());
 			ObjectOutputStream outObject = new ObjectOutputStream(sc.getOutputStream());
@@ -49,6 +48,10 @@ public class ClientFileThread extends Thread {
             br.close();
             
             outObject.writeObject(file);
+            
+            System.out.println("Server 1 SUCCESS.");
+			System.out.println("Finishing excecution...");
+			System.out.println("************************\n");
 			
 			System.out.println(file);
             
@@ -65,7 +68,11 @@ public class ClientFileThread extends Thread {
 			
 			try {
 				
-				System.out.println("Primer servidor cayó, se accede al 2do Servidor\n");
+				System.out.println("Server 1 FAILED");
+				System.out.println("Accessing server 2...");
+				System.out.println("Server 2 SUCCESS");
+				System.out.println("Continuing excecution...");
+				System.out.println("************************\n");
 				
 				sc = new Socket("localhost", 5001);
 				
@@ -78,9 +85,9 @@ public class ClientFileThread extends Thread {
 	            FileReader fr = new FileReader (archivo);
 	            BufferedReader br = new BufferedReader(fr);
 	            
-	            String palabraC = "sociedad";
+	            String wordC = "sociedad";
 	            out.writeInt(2);
-	            out.writeUTF(palabraC);
+	            out.writeUTF(wordC);
 	            
 	            ArrayList<String> file = new ArrayList<String>();
 	            String linea = br.readLine();
@@ -97,8 +104,8 @@ public class ClientFileThread extends Thread {
 				
 				System.out.println(file);
 	            
-	            int numPalabras = in.readInt();
-	            System.out.println("\nEl texto contiene la plabra '" + palabraC + "' " + numPalabras + " veces.");
+	            int numWords = in.readInt();
+	            System.out.println("\nThe text contains the word '" + wordC + "' " + numWords + " times.");
 	          
 				
 	            			
@@ -106,7 +113,7 @@ public class ClientFileThread extends Thread {
 				
 			} catch (Exception e2) {
 				
-				System.out.println("Error " + e.getMessage());
+				System.out.println("ERROR: " + e.getMessage());
 				
 			}	
 		}

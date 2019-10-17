@@ -35,8 +35,8 @@ public class Thread2 extends Thread {
 			so = sc.accept();
 			
 			System.out.println("\n*******************************");
-			System.out.print("Conection stablish on " + name + "\n");
-			System.out.println("*******************************");
+			System.out.println("Conection stablish on " + name);
+			System.out.println("*******************************\n");
 			
 			ObjectInputStream inObject = new ObjectInputStream(so.getInputStream());
 			ObjectOutputStream outObject = new ObjectOutputStream(so.getOutputStream());
@@ -44,7 +44,7 @@ public class Thread2 extends Thread {
 			DataInputStream in = new DataInputStream(so.getInputStream());
 
 			int selection = in.readInt();
-			System.out.println("Selección " + selection);
+			System.out.println("Selected option: " + selection);
 			
 			if (selection == 1) {
 	            
@@ -60,22 +60,22 @@ public class Thread2 extends Thread {
 														
 			}else if (selection == 2) {
 				
-				String palabra = in.readUTF();
+				String word = in.readUTF();
 				Object clientFile = inObject.readObject();
 				
 				ArrayList<String> clientFileList = new ArrayList<String>();
 				clientFileList.addAll((Collection<? extends String>) clientFile);
 				
-				System.out.println(palabra);
+				System.out.println("Word to find: " + word);
 				
 				int contador = 0;
 				for (int i = 0; i < clientFileList.size(); i++) {
 					
-					String sarray[] = clientFileList.get(i).split(" ");
+					String sarray[] = clientFileList.get(i).trim().split("\\s+|,\\s*|\\.\\s*");
 					
 					for (int j = 0; j < sarray.length; j++) {
                         
-                    	if (sarray[j].equals(palabra) == true) {
+                    	if (sarray[j].equals(word) == true) {
                             contador++;
                             
                         }
@@ -84,12 +84,9 @@ public class Thread2 extends Thread {
 					
 				}
 				
-                    
-                    
-                    
-                    out.writeInt(contador);
-                    
-                    System.out.println(contador);
+				out.writeInt(contador);
+				
+				System.out.println("The word " + word + " was found " + contador + " times. Returning info to cliente...");
                 
 			}
             
